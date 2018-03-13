@@ -7,9 +7,12 @@
   "devDependencies": {
     "@types/jsdom": "^11.0.2",
     "@types/node": "^8.0.31",
-    "jsdom": "^11.2.0"
+    "jsdom": "^11.2.0",
+    "typescript": "^2.7.2"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "tsc && node main.js"
+  },
   "author": "",
   "license": "ISC"
 }
