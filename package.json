@@ -1,8 +1,8 @@
 {
-  "name": "gamesparks-request-api-typings",
+  "name": "@types/gamesparks-cloud-code",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "types": "./index.d.ts",
   "dependencies": {},
   "devDependencies": {
     "@types/jsdom": "^11.0.2",
@@ -13,6 +13,12 @@
   "scripts": {
     "build": "tsc && node main.js"
   },
-  "author": "",
+  "author": "johnsoncodehk",
+  "contributors": [
+    {
+      "name": "Sebastian Śledź",
+      "url": "http://garaz.net"
+    }
+  ],
   "license": "ISC"
 }

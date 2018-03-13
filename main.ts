@@ -2,10 +2,12 @@ import * as https from "https";
 import * as fs from "fs";
 import { JSDOM } from 'jsdom';
 
-let webUrl = "https://api.gamesparks.net";
-let fileUrl = "./gs.html"
-let fromFile = false;
-let outPath = "./typings/";
+const webUrl = "https://api.gamesparks.net";
+const fileUrl = "./gs.html"
+const fromFile = false;
+const outPath = "./typings/";
+
+const typingsPaths: string[] = [];
 
 interface ApiInfo {
 	href: string,
@@ -103,6 +105,7 @@ async function main() {
 			}
 		}
 	}
+	writeIndexTypings();
 }
 function toTag(content: Node, findLocalName: string, start: number) {
 	for (let i = start; i < content.childNodes.length; i++) {
@@ -142,7 +145,10 @@ function handleData(data: DataInfo) {
 
 	dts += getLevelSpace(level) + "}\n";
 
-	fs.writeFileSync(outPath + data.href + "/" + data.title + ".d.ts", dts);
+	const path: string = outPath + data.href + "/" + data.title + ".d.ts";
+	fs.writeFileSync(path, dts);
+
+    typingsPaths.push(path);
 }
 function handleReurestAPI(data: ApiInfo) {
 	if (!fs.existsSync(outPath)) {
@@ -186,7 +192,18 @@ function handleReurestAPI(data: ApiInfo) {
 
 	dts += getLevelSpace(level) + "}\n";
 
-	fs.writeFileSync(outPath + data.href + "/" + data.title + ".d.ts", dts);
+	const path: string = outPath + data.href + "/" + data.title + ".d.ts";
+	fs.writeFileSync(path, dts);
+
+    typingsPaths.push(path);
+}
+function writeIndexTypings(): void {
+	let dts = "";
+	typingsPaths.forEach((path: string) => {
+        dts += "///<reference path=\"" + path + "\"/>\n";
+	});
+
+	fs.writeFileSync('./index.d.ts', dts);
 }
 function createDes(dess: string[], level: number) {
 	if (dess.length == 0) {
