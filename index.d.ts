@@ -1,3 +1,4 @@
+///<reference path="./typings/SparkRequests.d.ts"/>
 ///<reference path="./typings/Admin/BatchAdminRequest.d.ts"/>
 ///<reference path="./typings/Admin/CancelBulkJobAdminRequest.d.ts"/>
 ///<reference path="./typings/Admin/ListBulkJobsAdminRequest.d.ts"/>

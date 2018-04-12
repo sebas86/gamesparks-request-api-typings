@@ -7,7 +7,9 @@ const fileUrl = "./gs.html"
 const fromFile = false;
 const outPath = "./typings/";
 
-const typingsPaths: string[] = [];
+const typingsPaths: string[] = [
+    outPath + "SparkRequests.d.ts"
+];
 
 interface ApiInfo {
 	href: string,
